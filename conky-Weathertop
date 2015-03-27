@@ -3,118 +3,160 @@
 #
 # **********************************************************************
 
-background no
-font Sans:size=8
-#xftfont Sans:size=10
-use_xft yes
-xftalpha 0.9
-update_interval 3.0
-total_run_times 0
-
+# Create own window instead of using desktop (required in nautilus)
 own_window yes
 own_window_type normal
 own_window_transparent yes
 own_window_argb_visual no
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+background no
 
-double_buffer yes
-minimum_size 220 50
-maximum_width 225
+# fiddle with window
+#minimum_size 220 50
+#maximum_width 225
+use_spacer yes
 draw_shades yes
 draw_outline no
 draw_borders no
+alignment top_right
+gap_x 20
+gap_y 323
+no_buffers yes
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Update interval in seconds
+update_interval 3
+total_run_times 0
+cpu_avg_samples 5
+
+# Changes fonts
+uppercase no
+#font Droid Serif:size=8
+
+# Use Xft (anti-aliased font and stuff)
+use_xft yes
+xftfont Samanata:size=9.0
+# Alpha of Xft font. Must be a value at or between 1 and 0 ###
+xftalpha 0.5
+# Force UTF8? requires XFT ###
+override_utf8_locale yes
+
+# Graphs formatting
 draw_graph_borders yes
 default_color white
 default_shade_color black
 default_outline_color green
-alignment top_right
-gap_x 20
-gap_y 340
-no_buffers yes
-uppercase no
-cpu_avg_samples 2
-override_utf8_locale no
-uppercase yes # set to yes if you want all text to be in uppercase
+
+
+
+
+
+# Stuff after TEXT will be drawn on screen (above is preamble)
 
 TEXT
-${color white}SYSTEM ${hr 1}${color}
-
+${color white}SYSTEM ${hr 2}${color #33CC33}
 OS: ${alignr}OpenSUSE 13.2
 Hostname: $alignr$nodename
 Kernel: $alignr$kernel
 Uptime: $alignr$uptime
 Processes: ${alignr}$processes ($running_processes running)
-
-${color white}CPU and MEMORY ${hr 1}${color}
-
+${color white}MEMORY and CPU ${hr 2}${color #6699FF}
+${memgraph 16}
 Ram ${alignr}$mem / $memmax ($memperc%)
 ${membar 4}
-swap ${alignr}$swap / $swapmax ($swapperc%)
+Swap ${alignr}$swap / $swapmax ($swapperc%)
 ${swapbar 4}
 ${color #EE4000}CPU Total: ${color} ${color #00F5FF} ${cpu cpu0}% $color
 ${cpugraph cpu0 42AE4A eeeeee -t} 
-${color #EE4000}CPU-01: ${color} ${freq_g  cpu1}Ghz $color ${cpubar cpu1  8,65} ${color #00F5FF} ${alignr}${cpu cpu1}% 
-${color #EE4000}CPU-02: ${color} ${freq_g  cpu2}Ghz $color ${cpubar cpu2  8,65} ${color #00F5FF} ${alignr}${cpu cpu2}% 
-${color #EE4000}CPU-03: ${color} ${freq_g  cpu3}Ghz $color ${cpubar cpu3  8,65} ${color #00F5FF} ${alignr}${cpu cpu3}% 
-${color #EE4000}CPU-04: ${color} ${freq_g  cpu4}Ghz $color ${cpubar cpu4  8,65} ${color #00F5FF} ${alignr}${cpu cpu4}% 
-${color #EE4000}CPU-05: ${color} ${freq_g  cpu5}Ghz $color ${cpubar cpu5  8,65} ${color #00F5FF} ${alignr}${cpu cpu5}% 
-${color #EE4000}CPU-06: ${color} ${freq_g  cpu6}Ghz $color ${cpubar cpu6  8,65} ${color #00F5FF} ${alignr}${cpu cpu6}% 
-${color #EE4000}CPU-07: ${color} ${freq_g  cpu7}Ghz $color ${cpubar cpu7  8,65} ${color #00F5FF} ${alignr}${cpu cpu7}% 
-${color #EE4000}CPU-08: ${color} ${freq_g  cpu8}Ghz $color ${cpubar cpu8  8,65} ${color #00F5FF} ${alignr}${cpu cpu8}% 
-${color #EE4000}CPU-09: ${color} ${freq_g  cpu9}Ghz $color ${cpubar cpu9  8,65} ${color #00F5FF} ${alignr}${cpu cpu9}% 
-${color #EE4000}CPU-10: ${color} ${freq_g cpu10}Ghz $color ${cpubar cpu10 8,65} ${color #00F5FF} ${alignr}${cpu cpu10}%
-${color #EE4000}CPU-11: ${color} ${freq_g cpu11}Ghz $color ${cpubar cpu11 8,65} ${color #00F5FF} ${alignr}${cpu cpu11}%
-${color #EE4000}CPU-12: ${color} ${freq_g cpu12}Ghz $color ${cpubar cpu12 8,65} ${color #00F5FF} ${alignr}${cpu cpu12}%
-${color #EE4000}CPU-13: ${color} ${freq_g cpu13}Ghz $color ${cpubar cpu13 8,65} ${color #00F5FF} ${alignr}${cpu cpu13}%
-${color #EE4000}CPU-14: ${color} ${freq_g cpu14}Ghz $color ${cpubar cpu14 8,65} ${color #00F5FF} ${alignr}${cpu cpu14}%
-${color #EE4000}CPU-15: ${color} ${freq_g cpu15}Ghz $color ${cpubar cpu15 8,65} ${color #00F5FF} ${alignr}${cpu cpu15}%
-${color #EE4000}CPU-16: ${color} ${freq_g cpu16}Ghz $color ${cpubar cpu16 8,65} ${color #00F5FF} ${alignr}${cpu cpu16}%
-${color #EE4000}CPU-17: ${color} ${freq_g cpu17}Ghz $color ${cpubar cpu17 8,65} ${color #00F5FF} ${alignr}${cpu cpu17}%
-${color #EE4000}CPU-18: ${color} ${freq_g cpu18}Ghz $color ${cpubar cpu18 8,65} ${color #00F5FF} ${alignr}${cpu cpu18}%
-${color #EE4000}CPU-19: ${color} ${freq_g cpu19}Ghz $color ${cpubar cpu19 8,65} ${color #00F5FF} ${alignr}${cpu cpu19}%
-${color #EE4000}CPU-20: ${color} ${freq_g cpu20}Ghz $color ${cpubar cpu20 8,65} ${color #00F5FF} ${alignr}${cpu cpu20}%
-${color #EE4000}CPU-21: ${color} ${freq_g cpu21}Ghz $color ${cpubar cpu21 8,65} ${color #00F5FF} ${alignr}${cpu cpu21}%
-${color #EE4000}CPU-22: ${color} ${freq_g cpu22}Ghz $color ${cpubar cpu22 8,65} ${color #00F5FF} ${alignr}${cpu cpu22}%
-${color #EE4000}CPU-23: ${color} ${freq_g cpu23}Ghz $color ${cpubar cpu23 8,65} ${color #00F5FF} ${alignr}${cpu cpu23}%
-${color #EE4000}CPU-24: ${color} ${freq_g cpu24}Ghz $color ${cpubar cpu24 8,65} ${color #00F5FF} ${alignr}${cpu cpu24}%
-${color #EE4000}CPU-25: ${color} ${freq_g cpu25}Ghz $color ${cpubar cpu25 8,65} ${color #00F5FF} ${alignr}${cpu cpu25}%
-${color #EE4000}CPU-26: ${color} ${freq_g cpu26}Ghz $color ${cpubar cpu26 8,65} ${color #00F5FF} ${alignr}${cpu cpu26}%
-${color #EE4000}CPU-27: ${color} ${freq_g cpu27}Ghz $color ${cpubar cpu27 8,65} ${color #00F5FF} ${alignr}${cpu cpu27}%
-${color #EE4000}CPU-28: ${color} ${freq_g cpu28}Ghz $color ${cpubar cpu28 8,65} ${color #00F5FF} ${alignr}${cpu cpu28}%
-${color #EE4000}CPU-29: ${color} ${freq_g cpu29}Ghz $color ${cpubar cpu29 8,65} ${color #00F5FF} ${alignr}${cpu cpu29}%
-${color #EE4000}CPU-30: ${color} ${freq_g cpu30}Ghz $color ${cpubar cpu30 8,65} ${color #00F5FF} ${alignr}${cpu cpu30}%
-${color #EE4000}CPU-31: ${color} ${freq_g cpu31}Ghz $color ${cpubar cpu31 8,65} ${color #00F5FF} ${alignr}${cpu cpu31}%
-${color #EE4000}CPU-32: ${color} ${freq_g cpu32}Ghz $color ${cpubar cpu32 8,65} ${color #00F5FF} ${alignr}${cpu cpu32}%
-
-
-${color white}Filesystem ${hr 1}${color}
-
-Root: ${alignr}${fs_free /} / ${fs_size /}
+${color #EE4000}CPU-01: ${color} ${freq_g  cpu1}Ghz ${color } ${cpugraph cpu1  9,80} ${color #00F5FF} ${alignr}${cpu  cpu1}%
+${color #EE4000}CPU-02: ${color} ${freq_g  cpu2}Ghz ${color } ${cpugraph cpu2  9,80} ${color #00F5FF} ${alignr}${cpu  cpu2}%
+${color #EE4000}CPU-03: ${color} ${freq_g  cpu3}Ghz ${color } ${cpugraph cpu3  9,80} ${color #00F5FF} ${alignr}${cpu  cpu3}%
+${color #EE4000}CPU-04: ${color} ${freq_g  cpu4}Ghz ${color } ${cpugraph cpu4  9,80} ${color #00F5FF} ${alignr}${cpu  cpu4}%
+${color #EE4000}CPU-05: ${color} ${freq_g  cpu5}Ghz ${color } ${cpugraph cpu5  9,80} ${color #00F5FF} ${alignr}${cpu  cpu5}%
+${color #EE4000}CPU-06: ${color} ${freq_g  cpu6}Ghz ${color } ${cpugraph cpu6  9,80} ${color #00F5FF} ${alignr}${cpu  cpu6}%
+${color #EE4000}CPU-07: ${color} ${freq_g  cpu7}Ghz ${color } ${cpugraph cpu7  9,80} ${color #00F5FF} ${alignr}${cpu  cpu7}%
+${color #EE4000}CPU-08: ${color} ${freq_g  cpu8}Ghz ${color } ${cpugraph cpu8  9,80} ${color #00F5FF} ${alignr}${cpu  cpu8}%
+${color #EE4000}CPU-09: ${color} ${freq_g  cpu9}Ghz ${color } ${cpugraph cpu9  9,80} ${color #00F5FF} ${alignr}${cpu  cpu9}%
+${color #EE4000}CPU-10: ${color} ${freq_g cpu10}Ghz ${color } ${cpugraph cpu10 9,80} ${color #00F5FF} ${alignr}${cpu cpu10}%
+${color #EE4000}CPU-11: ${color} ${freq_g cpu11}Ghz ${color } ${cpugraph cpu11 9,80} ${color #00F5FF} ${alignr}${cpu cpu11}%
+${color #EE4000}CPU-12: ${color} ${freq_g cpu12}Ghz ${color } ${cpugraph cpu12 9,80} ${color #00F5FF} ${alignr}${cpu cpu12}%
+${color #EE4000}CPU-13: ${color} ${freq_g cpu13}Ghz ${color } ${cpugraph cpu13 9,80} ${color #00F5FF} ${alignr}${cpu cpu13}%
+${color #EE4000}CPU-14: ${color} ${freq_g cpu14}Ghz ${color } ${cpugraph cpu14 9,80} ${color #00F5FF} ${alignr}${cpu cpu14}%
+${color #EE4000}CPU-15: ${color} ${freq_g cpu15}Ghz ${color } ${cpugraph cpu15 9,80} ${color #00F5FF} ${alignr}${cpu cpu15}%
+${color #EE4000}CPU-16: ${color} ${freq_g cpu16}Ghz ${color } ${cpugraph cpu16 9,80} ${color #00F5FF} ${alignr}${cpu cpu16}%
+${color #EE4000}CPU-17: ${color} ${freq_g cpu17}Ghz ${color } ${cpugraph cpu17 9,80} ${color #00F5FF} ${alignr}${cpu cpu17}%
+${color #EE4000}CPU-18: ${color} ${freq_g cpu18}Ghz ${color } ${cpugraph cpu18 9,80} ${color #00F5FF} ${alignr}${cpu cpu18}%
+${color #EE4000}CPU-19: ${color} ${freq_g cpu19}Ghz ${color } ${cpugraph cpu19 9,80} ${color #00F5FF} ${alignr}${cpu cpu19}%
+${color #EE4000}CPU-20: ${color} ${freq_g cpu20}Ghz ${color } ${cpugraph cpu20 9,80} ${color #00F5FF} ${alignr}${cpu cpu20}%
+${color #EE4000}CPU-21: ${color} ${freq_g cpu21}Ghz ${color } ${cpugraph cpu21 9,80} ${color #00F5FF} ${alignr}${cpu cpu21}%
+${color #EE4000}CPU-22: ${color} ${freq_g cpu22}Ghz ${color } ${cpugraph cpu22 9,80} ${color #00F5FF} ${alignr}${cpu cpu22}%
+${color #EE4000}CPU-23: ${color} ${freq_g cpu23}Ghz ${color } ${cpugraph cpu23 9,80} ${color #00F5FF} ${alignr}${cpu cpu23}%
+${color #EE4000}CPU-24: ${color} ${freq_g cpu24}Ghz ${color } ${cpugraph cpu24 9,80} ${color #00F5FF} ${alignr}${cpu cpu24}%
+${color #EE4000}CPU-25: ${color} ${freq_g cpu25}Ghz ${color } ${cpugraph cpu25 9,80} ${color #00F5FF} ${alignr}${cpu cpu25}%
+${color #EE4000}CPU-26: ${color} ${freq_g cpu26}Ghz ${color } ${cpugraph cpu26 9,80} ${color #00F5FF} ${alignr}${cpu cpu26}%
+${color #EE4000}CPU-27: ${color} ${freq_g cpu27}Ghz ${color } ${cpugraph cpu27 9,80} ${color #00F5FF} ${alignr}${cpu cpu27}%
+${color #EE4000}CPU-28: ${color} ${freq_g cpu28}Ghz ${color } ${cpugraph cpu28 9,80} ${color #00F5FF} ${alignr}${cpu cpu28}%
+${color #EE4000}CPU-29: ${color} ${freq_g cpu29}Ghz ${color } ${cpugraph cpu29 9,80} ${color #00F5FF} ${alignr}${cpu cpu29}%
+${color #EE4000}CPU-30: ${color} ${freq_g cpu30}Ghz ${color } ${cpugraph cpu30 9,80} ${color #00F5FF} ${alignr}${cpu cpu30}%
+${color #EE4000}CPU-31: ${color} ${freq_g cpu31}Ghz ${color } ${cpugraph cpu31 9,80} ${color #00F5FF} ${alignr}${cpu cpu31}%
+${color #EE4000}CPU-32: ${color} ${freq_g cpu32}Ghz ${color } ${cpugraph cpu32 9,80} ${color #00F5FF} ${alignr}${cpu cpu32}%
+#${color #EE4000}CPU-01: ${color} ${freq_g  cpu1}Ghz $color ${cpubar cpu1  8,65} ${color #00F5FF} ${alignr}${cpu  cpu1}% 
+#${color #EE4000}CPU-02: ${color} ${freq_g  cpu2}Ghz $color ${cpubar cpu2  8,65} ${color #00F5FF} ${alignr}${cpu  cpu2}% 
+#${color #EE4000}CPU-03: ${color} ${freq_g  cpu3}Ghz $color ${cpubar cpu3  8,65} ${color #00F5FF} ${alignr}${cpu  cpu3}% 
+#${color #EE4000}CPU-04: ${color} ${freq_g  cpu4}Ghz $color ${cpubar cpu4  8,65} ${color #00F5FF} ${alignr}${cpu  cpu4}% 
+#${color #EE4000}CPU-05: ${color} ${freq_g  cpu5}Ghz $color ${cpubar cpu5  8,65} ${color #00F5FF} ${alignr}${cpu  cpu5}% 
+#${color #EE4000}CPU-06: ${color} ${freq_g  cpu6}Ghz $color ${cpubar cpu6  8,65} ${color #00F5FF} ${alignr}${cpu  cpu6}% 
+#${color #EE4000}CPU-07: ${color} ${freq_g  cpu7}Ghz $color ${cpubar cpu7  8,65} ${color #00F5FF} ${alignr}${cpu  cpu7}% 
+#${color #EE4000}CPU-08: ${color} ${freq_g  cpu8}Ghz $color ${cpubar cpu8  8,65} ${color #00F5FF} ${alignr}${cpu  cpu8}% 
+#${color #EE4000}CPU-09: ${color} ${freq_g  cpu9}Ghz $color ${cpubar cpu9  8,65} ${color #00F5FF} ${alignr}${cpu  cpu9}% 
+#${color #EE4000}CPU-10: ${color} ${freq_g cpu10}Ghz $color ${cpubar cpu10 8,65} ${color #00F5FF} ${alignr}${cpu cpu10}%
+#${color #EE4000}CPU-11: ${color} ${freq_g cpu11}Ghz $color ${cpubar cpu11 8,65} ${color #00F5FF} ${alignr}${cpu cpu11}%
+#${color #EE4000}CPU-12: ${color} ${freq_g cpu12}Ghz $color ${cpubar cpu12 8,65} ${color #00F5FF} ${alignr}${cpu cpu12}%
+#${color #EE4000}CPU-13: ${color} ${freq_g cpu13}Ghz $color ${cpubar cpu13 8,65} ${color #00F5FF} ${alignr}${cpu cpu13}%
+#${color #EE4000}CPU-14: ${color} ${freq_g cpu14}Ghz $color ${cpubar cpu14 8,65} ${color #00F5FF} ${alignr}${cpu cpu14}%
+#${color #EE4000}CPU-15: ${color} ${freq_g cpu15}Ghz $color ${cpubar cpu15 8,65} ${color #00F5FF} ${alignr}${cpu cpu15}%
+#${color #EE4000}CPU-16: ${color} ${freq_g cpu16}Ghz $color ${cpubar cpu16 8,65} ${color #00F5FF} ${alignr}${cpu cpu16}%
+#${color #EE4000}CPU-17: ${color} ${freq_g cpu17}Ghz $color ${cpubar cpu17 8,65} ${color #00F5FF} ${alignr}${cpu cpu17}%
+#${color #EE4000}CPU-18: ${color} ${freq_g cpu18}Ghz $color ${cpubar cpu18 8,65} ${color #00F5FF} ${alignr}${cpu cpu18}%
+#${color #EE4000}CPU-19: ${color} ${freq_g cpu19}Ghz $color ${cpubar cpu19 8,65} ${color #00F5FF} ${alignr}${cpu cpu19}%
+#${color #EE4000}CPU-20: ${color} ${freq_g cpu20}Ghz $color ${cpubar cpu20 8,65} ${color #00F5FF} ${alignr}${cpu cpu20}%
+#${color #EE4000}CPU-21: ${color} ${freq_g cpu21}Ghz $color ${cpubar cpu21 8,65} ${color #00F5FF} ${alignr}${cpu cpu21}%
+#${color #EE4000}CPU-22: ${color} ${freq_g cpu22}Ghz $color ${cpubar cpu22 8,65} ${color #00F5FF} ${alignr}${cpu cpu22}%
+#${color #EE4000}CPU-23: ${color} ${freq_g cpu23}Ghz $color ${cpubar cpu23 8,65} ${color #00F5FF} ${alignr}${cpu cpu23}%
+#${color #EE4000}CPU-24: ${color} ${freq_g cpu24}Ghz $color ${cpubar cpu24 8,65} ${color #00F5FF} ${alignr}${cpu cpu24}%
+#${color #EE4000}CPU-25: ${color} ${freq_g cpu25}Ghz $color ${cpubar cpu25 8,65} ${color #00F5FF} ${alignr}${cpu cpu25}%
+#${color #EE4000}CPU-26: ${color} ${freq_g cpu26}Ghz $color ${cpubar cpu26 8,65} ${color #00F5FF} ${alignr}${cpu cpu26}%
+#${color #EE4000}CPU-27: ${color} ${freq_g cpu27}Ghz $color ${cpubar cpu27 8,65} ${color #00F5FF} ${alignr}${cpu cpu27}%
+#${color #EE4000}CPU-28: ${color} ${freq_g cpu28}Ghz $color ${cpubar cpu28 8,65} ${color #00F5FF} ${alignr}${cpu cpu28}%
+#${color #EE4000}CPU-29: ${color} ${freq_g cpu29}Ghz $color ${cpubar cpu29 8,65} ${color #00F5FF} ${alignr}${cpu cpu29}%
+#${color #EE4000}CPU-30: ${color} ${freq_g cpu30}Ghz $color ${cpubar cpu30 8,65} ${color #00F5FF} ${alignr}${cpu cpu30}%
+#${color #EE4000}CPU-31: ${color} ${freq_g cpu31}Ghz $color ${cpubar cpu31 8,65} ${color #00F5FF} ${alignr}${cpu cpu31}%
+#${color #EE4000}CPU-32: ${color} ${freq_g cpu32}Ghz $color ${cpubar cpu32 8,65} ${color #00F5FF} ${alignr}${cpu cpu32}%
+${color white}FILESYSTEM ${hr 2}${color #FF9900} 
+root & home: ${alignr}${fs_free /} free of ${fs_size /}
 ${fs_bar 4 /}
-Home: ${alignr}${fs_free /home} / ${fs_size /home}
-${fs_bar 4 /home}
-data-RAID-0: ${alignr}${fs_free /mnt/data-RAID-0} / ${fs_size /mnt/data-RAID-0}
+  Read ${diskio_read /dev/sda3} k/s ${alignr}Write ${diskio_write /dev/sda3} k/s
+  ${diskiograph_read /dev/sda3 15,107} ${alignr}${diskiograph_write /dev/sda3 15,107}
+data-RAID-0: ${alignr}${fs_free /mnt/data-RAID-0} free of ${fs_size /mnt/data-RAID-0}
+${fs_bar 4 /mnt/data-RAID-0}
+  Read ${diskio_read /dev/sdb1} k/s ${alignr}Write ${diskio_write /dev/sdb1} k/s
+  ${diskiograph_read /dev/sdb1 15,107} ${alignr}${diskiograph_write /dev/sdb1 15,107}
+data-RAID-1: ${alignr}${fs_free /mnt/data-RAID-1} free of ${fs_size /mnt/data-RAID-1}
 ${fs_bar 4 /mnt/data-RAID-1}
-data-RAID-1: ${alignr}${fs_free /mnt/data-RAID-1} / ${fs_size /mnt/data-RAID-1}
-${fs_bar 4 /mnt/data-RAID-1}
-
-${color white}NETWORK ${hr 1}${color}
-
-Down ${downspeed enp6s0} k/s ${alignr}Up ${upspeed enp6s0} k/s
-${downspeedgraph enp6s0 25,107} ${alignr}${upspeedgraph enp6s0 25,107}
-Total ${totaldown enp6s0} ${alignr}Total ${totalup enp6s0}
-
-${color white}PROCESSES ${hr 1}${color}
-
+  Read ${diskio_read /dev/sdc1} k/s ${alignr}Write ${diskio_write /dev/sdc1} k/s
+  ${diskiograph_read /dev/sdc1 15,107} ${alignr}${diskiograph_write /dev/sdc1 15,107}
+${color white}NETWORK ${hr 2}${color #FF00FF}
+  Down ${downspeed enp6s0} k/s ${alignr}Up ${upspeed enp6s0} k/s
+${downspeedgraph enp6s0 15,107} ${alignr}${upspeedgraph enp6s0 15,107}
+  Total ${totaldown enp6s0} ${alignr}Total ${totalup enp6s0}
+${color white}PROCESSES ${hr 2}${color #999966}
 Highest CPU $alignr CPU% MEM%
-${top name 1}$alignr${top cpu 1}${top mem 1}
-${top name 2}$alignr${top cpu 2}${top mem 2}
-${top name 3}$alignr${top cpu 3}${top mem 3}
-
+  ${top name 1}$alignr${top cpu 1}${top mem 1}
+  ${top name 2}$alignr${top cpu 2}${top mem 2}
 Highest MEM $alignr CPU% MEM%
-${top_mem name 1}$alignr${top_mem cpu 1}${top_mem mem 1}
-${top_mem name 2}$alignr${top_mem cpu 2}${top_mem mem 2}
-${top_mem name 3}$alignr${top_mem cpu 3}${top_mem mem 3}
-
-${color white}Users ${hr 1}${color}
-${color white}Users: $user_names
+  ${top_mem name 1}$alignr${top_mem cpu 1}${top_mem mem 1}
+  ${top_mem name 2}$alignr${top_mem cpu 2}${top_mem mem 2}
+${color white}Users ${hr 2}${color 33CC33}
+  ${color white}Users (${user_number}): $user_names
