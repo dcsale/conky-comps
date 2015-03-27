@@ -2,4 +2,4 @@
 system monitors for X
 
 # screenshots
-![Weathertop](snapshot-Weathertop.png)
+![Weathertop](https://raw.githubusercontent.com/dcsale/conky-comps/master/screenshot-Weathertop.png "Weathertop")
