@@ -18,18 +18,21 @@ use_spacer none
 draw_shades yes
 draw_outline no
 draw_borders no
-alignment middle_right
+alignment top_right
 gap_x 0
-gap_y 0
+gap_y 200
 no_buffers yes
+own_window_transparent no
+own_window_argb_visual yes
+own_window_class conky-semi
 
 # Use double buffering (reduces flicker, may not work for everyone)
 double_buffer yes
 
 # Update interval in seconds
-update_interval 3
+update_interval 2
 total_run_times 0
-cpu_avg_samples 5
+cpu_avg_samples 10
 
 # Changes fonts
 uppercase no
@@ -64,6 +67,7 @@ Hostname: $alignr$nodename
 Kernel: $alignr$kernel
 Uptime: $alignr$uptime
 Processes: ${alignr}$processes ($running_processes running)
+
 ${color white}MEMORY and CPU ${hr 2}${color #6699FF}
 ${memgraph 16}
 Ram ${alignr}$mem / $memmax ($memperc%)
@@ -88,22 +92,7 @@ ${color #EE4000}CPU-13: ${color} ${freq_g cpu13}Ghz ${color } ${cpugraph cpu13 9
 ${color #EE4000}CPU-14: ${color} ${freq_g cpu14}Ghz ${color } ${cpugraph cpu14 9,80} ${color #00F5FF} ${alignr}${cpu cpu14}%
 ${color #EE4000}CPU-15: ${color} ${freq_g cpu15}Ghz ${color } ${cpugraph cpu15 9,80} ${color #00F5FF} ${alignr}${cpu cpu15}%
 ${color #EE4000}CPU-16: ${color} ${freq_g cpu16}Ghz ${color } ${cpugraph cpu16 9,80} ${color #00F5FF} ${alignr}${cpu cpu16}%
-${color #EE4000}CPU-17: ${color} ${freq_g cpu17}Ghz ${color } ${cpugraph cpu17 9,80} ${color #00F5FF} ${alignr}${cpu cpu17}%
-${color #EE4000}CPU-18: ${color} ${freq_g cpu18}Ghz ${color } ${cpugraph cpu18 9,80} ${color #00F5FF} ${alignr}${cpu cpu18}%
-${color #EE4000}CPU-19: ${color} ${freq_g cpu19}Ghz ${color } ${cpugraph cpu19 9,80} ${color #00F5FF} ${alignr}${cpu cpu19}%
-${color #EE4000}CPU-20: ${color} ${freq_g cpu20}Ghz ${color } ${cpugraph cpu20 9,80} ${color #00F5FF} ${alignr}${cpu cpu20}%
-${color #EE4000}CPU-21: ${color} ${freq_g cpu21}Ghz ${color } ${cpugraph cpu21 9,80} ${color #00F5FF} ${alignr}${cpu cpu21}%
-${color #EE4000}CPU-22: ${color} ${freq_g cpu22}Ghz ${color } ${cpugraph cpu22 9,80} ${color #00F5FF} ${alignr}${cpu cpu22}%
-${color #EE4000}CPU-23: ${color} ${freq_g cpu23}Ghz ${color } ${cpugraph cpu23 9,80} ${color #00F5FF} ${alignr}${cpu cpu23}%
-${color #EE4000}CPU-24: ${color} ${freq_g cpu24}Ghz ${color } ${cpugraph cpu24 9,80} ${color #00F5FF} ${alignr}${cpu cpu24}%
-${color #EE4000}CPU-25: ${color} ${freq_g cpu25}Ghz ${color } ${cpugraph cpu25 9,80} ${color #00F5FF} ${alignr}${cpu cpu25}%
-${color #EE4000}CPU-26: ${color} ${freq_g cpu26}Ghz ${color } ${cpugraph cpu26 9,80} ${color #00F5FF} ${alignr}${cpu cpu26}%
-${color #EE4000}CPU-27: ${color} ${freq_g cpu27}Ghz ${color } ${cpugraph cpu27 9,80} ${color #00F5FF} ${alignr}${cpu cpu27}%
-${color #EE4000}CPU-28: ${color} ${freq_g cpu28}Ghz ${color } ${cpugraph cpu28 9,80} ${color #00F5FF} ${alignr}${cpu cpu28}%
-${color #EE4000}CPU-29: ${color} ${freq_g cpu29}Ghz ${color } ${cpugraph cpu29 9,80} ${color #00F5FF} ${alignr}${cpu cpu29}%
-${color #EE4000}CPU-30: ${color} ${freq_g cpu30}Ghz ${color } ${cpugraph cpu30 9,80} ${color #00F5FF} ${alignr}${cpu cpu30}%
-${color #EE4000}CPU-31: ${color} ${freq_g cpu31}Ghz ${color } ${cpugraph cpu31 9,80} ${color #00F5FF} ${alignr}${cpu cpu31}%
-${color #EE4000}CPU-32: ${color} ${freq_g cpu32}Ghz ${color } ${cpugraph cpu32 9,80} ${color #00F5FF} ${alignr}${cpu cpu32}%
+
 ${color white}FILESYSTEM ${hr 2}${color #FF9900} 
 root & home: ${alignr}${fs_free /} free of ${fs_size /}
 ${fs_bar 4 /}
@@ -117,10 +106,12 @@ data-RAID-1: ${alignr}${fs_free /mnt/data-RAID-1} free of ${fs_size /mnt/data-RA
 ${fs_bar 4 /mnt/data-RAID-1}
   Read ${diskio_read /dev/sdc1} k/s ${alignr}Write ${diskio_write /dev/sdc1} k/s
   ${diskiograph_read /dev/sdc1 15,107} ${alignr}${diskiograph_write /dev/sdc1 15,107}
+
 ${color white}NETWORK ${hr 2}${color #FF00FF}
   Down ${downspeed enp6s0} k/s ${alignr}Up ${upspeed enp6s0} k/s
   ${downspeedgraph enp6s0 15,107} ${alignr}${upspeedgraph enp6s0 15,107}
   Total ${totaldown enp6s0} ${alignr}Total ${totalup enp6s0}
+
 ${color white}PROCESSES ${hr 2}${color #999966}
 Highest CPU $alignr CPU% MEM%
   ${top name 1}$alignr${top cpu 1}${top mem 1}
@@ -128,5 +119,7 @@ Highest CPU $alignr CPU% MEM%
 Highest MEM $alignr CPU% MEM%
   ${top_mem name 1}$alignr${top_mem cpu 1}${top_mem mem 1}
   ${top_mem name 2}$alignr${top_mem cpu 2}${top_mem mem 2}
+
 ${color white}Users ${hr 2}${color 33CC33}
   ${color white}Users (${user_number}): $user_names
+
