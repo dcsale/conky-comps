@@ -4,7 +4,10 @@ export PAR_COMPILER=/usr/lib64/mpi/gcc/openmpi/bin/mpicc
 export PAR_COMPILER_CXX=/usr/lib64/mpi/gcc/openmpi/bin/mpicxx
 export PAR_INCLUDE="-I/usr/lib64/mpi/gcc/openmpi/include/"
 
-
+# on the Weathertop computer, use:
 /build_visit2_9_2.sh --makeflags '-j 8' --visit --parallel --required --netcdf --slivr --system-qt --system-python
 
-# it worked, and starts in parallel !! ;-)
+# on the Barad computer, use:
+./build_visit2_9_2.sh --makeflags '-j 8' --visit --parallel --required --netcdf --slivr
+
+# these options worked and even starts in parallel !! ;-)
