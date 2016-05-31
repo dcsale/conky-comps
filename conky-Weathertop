@@ -11,16 +11,18 @@ own_window_argb_visual no
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 background no
 
-# fiddle with window
-minimum_size 220 350
-maximum_width 225
+# Minimum size of text area
+text_buffer_size
+minimum_size 200 1440
+maximum_width 200
+
 use_spacer none
 draw_shades yes
 draw_outline no
 draw_borders no
 alignment top_right
-gap_x 0
-gap_y 200
+gap_x 10
+gap_y 0
 no_buffers yes
 own_window_transparent no
 own_window_argb_visual yes
@@ -30,9 +32,9 @@ own_window_class conky-semi
 double_buffer yes
 
 # Update interval in seconds
-update_interval 2
+update_interval 1
 total_run_times 0
-cpu_avg_samples 10
+cpu_avg_samples 32
 
 # Changes fonts
 uppercase no
@@ -68,13 +70,9 @@ Kernel: $alignr$kernel
 Uptime: $alignr$uptime
 Processes: ${alignr}$processes ($running_processes running)
 
-${color white}MEMORY and CPU ${hr 2}${color #6699FF}
-${memgraph 16}
-Ram ${alignr}$mem / $memmax ($memperc%)
-${membar 4}
-Swap ${alignr}$swap / $swapmax ($swapperc%)
-${swapbar 4}
-${color #EE4000}CPU Total: ${color} ${color #00F5FF} ${cpu cpu0}% $color
+${color white}CPU and MEMORY ${hr 2}${color #6699FF}
+
+${color #EE4000}CPU Total: ${color} ${color #00F5FF} ${alignr}${cpu cpu0}% $color
 ${cpugraph cpu0 42AE4A eeeeee -t} 
 ${color #EE4000}CPU-01: ${color} ${freq_g  cpu1}Ghz ${color } ${cpugraph cpu1  9,80} ${color #00F5FF} ${alignr}${cpu  cpu1}%
 ${color #EE4000}CPU-02: ${color} ${freq_g  cpu2}Ghz ${color } ${cpugraph cpu2  9,80} ${color #00F5FF} ${alignr}${cpu  cpu2}%
@@ -92,6 +90,23 @@ ${color #EE4000}CPU-13: ${color} ${freq_g cpu13}Ghz ${color } ${cpugraph cpu13 9
 ${color #EE4000}CPU-14: ${color} ${freq_g cpu14}Ghz ${color } ${cpugraph cpu14 9,80} ${color #00F5FF} ${alignr}${cpu cpu14}%
 ${color #EE4000}CPU-15: ${color} ${freq_g cpu15}Ghz ${color } ${cpugraph cpu15 9,80} ${color #00F5FF} ${alignr}${cpu cpu15}%
 ${color #EE4000}CPU-16: ${color} ${freq_g cpu16}Ghz ${color } ${cpugraph cpu16 9,80} ${color #00F5FF} ${alignr}${cpu cpu16}%
+
+${memgraph 42AE4A eeeeee -t} 
+Ram ${alignr}$mem / $memmax ($memperc%)
+${membar 4}
+Swap ${alignr}$swap / $swapmax ($swapperc%)
+${swapbar 4}
+
+Discrete GPU ${hr 2}
+${if_match ${exec lsmod | grep 'nvidia' -c} > 0}\
+${goto 6}${voffset 0}${font conkycolorslogos:size=16}n${font}${voffset -6}${goto 32}${exec nvidia-smi --query-gpu=name --format=csv,noheader}
+${goto 6}${voffset 0}${font conkycolors:size=16}8${font}${voffset -6}${goto 32}\
+Temperature: ${alignr}${color #FCAF3E}${exec nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits} °C$color
+${goto 6}${voffset 0}${font conkycolors:size=16}e${font}${voffset -6}${goto 32}\
+Memory:${alignr}${exec nvidia-smi --query-gpu=memory.used --format=csv,noheader} / ${exec nvidia-smi --query-gpu=memory.total --format=csv,noheader}
+${else}\
+${goto 6}${voffset 0}${font conkycolors:size=16}r${font}${voffset -6}${goto 32}OFF
+${endif}\
 
 ${color white}FILESYSTEM ${hr 2}${color #FF9900} 
 root & home: ${alignr}${fs_free /} free of ${fs_size /}
@@ -116,10 +131,13 @@ ${color white}PROCESSES ${hr 2}${color #999966}
 Highest CPU $alignr CPU% MEM%
   ${top name 1}$alignr${top cpu 1}${top mem 1}
   ${top name 2}$alignr${top cpu 2}${top mem 2}
+  ${top name 3}$alignr${top cpu 3}${top mem 3}
 Highest MEM $alignr CPU% MEM%
   ${top_mem name 1}$alignr${top_mem cpu 1}${top_mem mem 1}
   ${top_mem name 2}$alignr${top_mem cpu 2}${top_mem mem 2}
+  ${top_mem name 3}$alignr${top_mem cpu 3}${top_mem mem 3}
 
 ${color white}Users ${hr 2}${color 33CC33}
-  ${color white}Users (${user_number}): $user_names
-
+  ${color white}Users (${user_number}): 
+  $user_names
+${color white} ${hr 2}${color 33CC33}
