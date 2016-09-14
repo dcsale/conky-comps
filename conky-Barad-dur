@@ -78,9 +78,18 @@ ${color #EE4000}CPU-22: ${color} ${freq_g cpu22}Ghz $color ${cpubar cpu22 8,65} 
 ${color #EE4000}CPU-23: ${color} ${freq_g cpu23}Ghz $color ${cpubar cpu23 8,65} ${color #00F5FF} ${alignr}${cpu cpu23}%
 ${color #EE4000}CPU-24: ${color} ${freq_g cpu24}Ghz $color ${cpubar cpu24 8,65} ${color #00F5FF} ${alignr}${cpu cpu24}%
 
+Discrete GPU ${hr 2}
+${if_match ${exec lsmod | grep 'nvidia' -c} > 0}\
+${goto 6}${voffset 0}${font conkycolorslogos:size=16}n${font}${voffset -6}${goto 32}${exec nvidia-smi --query-gpu=name --format=csv,noheader}
+${goto 6}${voffset 0}${font conkycolors:size=16}8${font}${voffset -6}${goto 32}\
+Temperature: ${alignr}${color #FCAF3E}${exec nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits} °C$color
+${goto 6}${voffset 0}${font conkycolors:size=16}e${font}${voffset -6}${goto 32}\
+Memory:${alignr}${exec nvidia-smi --query-gpu=memory.used --format=csv,noheader} / ${exec nvidia-smi --query-gpu=memory.total --format=csv,noheader}
+${else}\
+${goto 6}${voffset 0}${font conkycolors:size=16}r${font}${voffset -6}${goto 32}OFF
+${endif}\
 
 ${color white}Filesystem ${hr 1}${color}
-
 Root: ${alignr}${fs_free /} / ${fs_size /}
 ${fs_bar 4 /}
 Home: ${alignr}${fs_free /home} / ${fs_size /home}
@@ -91,13 +100,11 @@ data-RAID-1: ${alignr}${fs_free /mnt/data-RAID-1} / ${fs_size /mnt/data-RAID-1}
 ${fs_bar 4 /mnt/data-RAID-1}
 
 ${color white}NETWORK ${hr 1}${color}
-
 Down ${downspeed enp3s0} k/s ${alignr}Up ${upspeed enp3s0} k/s
 ${downspeedgraph enp3s0 25,107} ${alignr}${upspeedgraph enp3s0 25,107}
 Total ${totaldown enp3s0} ${alignr}Total ${totalup enp3s0}
 
 ${color white}PROCESSES ${hr 1}${color}
-
 Highest CPU $alignr CPU% MEM%
 ${top name 1}$alignr${top cpu 1}${top mem 1}
 ${top name 2}$alignr${top cpu 2}${top mem 2}
@@ -107,6 +114,5 @@ Highest MEM $alignr CPU% MEM%
 ${top_mem name 1}$alignr${top_mem cpu 1}${top_mem mem 1}
 ${top_mem name 2}$alignr${top_mem cpu 2}${top_mem mem 2}
 ${top_mem name 3}$alignr${top_mem cpu 3}${top_mem mem 3}
-
 ${color white}Users ${hr 1}${color}
 ${color white}Users: $user_names
